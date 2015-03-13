@@ -1,0 +1,13 @@
+doctype html
+head
+    title Get my Plunks!
+body(ng-app="myPlunks", ng-controller="myPlunksCtrl as ctrl")
+    h1 I wonder if I can get my Plunks...Let's try it
+    button(ng-click="ctrl.getPlunks()") Get my Plunks!
+    div(ng-show = "ctrl.loading") Loading...
+    div(ng-show = "ctrl.error") Sorry Try again Later...
+    div(ng-repeat = "plunk in ctrl.plunks")
+        pre
+            span(ng-bind-template="Description : {{plunk.description}}", style="display:block;")
+            span(ng-bind-template="Created : {{plunk.created_at | date:fullDate}}", style="display:block;")
+    script(src="/scripts/bundle.js")

@@ -1,0 +1,21 @@
+{
+  "name": "SinonUnitTest",
+  "version": "1.0.0",
+  "homepage": "https://github.com/brion25/Sinon-Browserify-Example",
+  "authors": [
+    "JC Gomez"
+  ],
+  "description": "Quick Example of how to Create Unit Tests with Sinon, Browserify and Mocha",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.14"
+  }
+}
