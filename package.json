@@ -1,0 +1,23 @@
+{
+  "name": "SinonUnitTest",
+  "version": "1.0.0",
+  "description": "Qick Example of how to Create Unit Tests with Sinon, Browserify and Mocha",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brion25/Sinon-Browserify-Example.git"
+  },
+  "author": "JC Gomez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brion25/Sinon-Browserify-Example/issues"
+  },
+  "homepage": "https://github.com/brion25/Sinon-Browserify-Example",
+  "devDependencies": {
+    "angular": "^1.3.14",
+    "sinon": "^1.13.0",
+    "gulp": "^3.8.11",
+    "mocha": "^2.2.1",
+    "gulp-jade": "^1.0.0",
+    "browserify": "^9.0.3"
+  }
+}
