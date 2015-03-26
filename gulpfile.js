@@ -20,6 +20,11 @@ gulp.task("js",function(){
         .pipe(gulp.dest("./dist/scripts"));
 });
 
+gulp.task("unit-test",function(){
+    gulp.src("./unit/*.js")
+        .pipe(mocha({reporter:'spec'}))
+});
+
 gulp.task("watch",function(){
     gulp.watch("./app/**/*.js",["js"]);
     gulp.watch("./app/**/*.jade",["templates"])
