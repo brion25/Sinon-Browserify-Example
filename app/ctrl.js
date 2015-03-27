@@ -16,6 +16,16 @@ function myCtrl(factory){
             }
         );
     }
+    
+    self.searchRepository = function(){
+        factory.searchRepos(self.query).then(
+            function(response){
+                self.searchResult = response.data.items;
+            },function(error){
+                self.searchResult = [];
+                console.log("Sorry...");
+            });
+    }
 }
 
 module.exports = myCtrl;

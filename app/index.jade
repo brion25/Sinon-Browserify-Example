@@ -10,4 +10,12 @@ body(ng-app="myPlunks", ng-controller="myPlunksCtrl as ctrl")
         pre
             span(ng-bind-template="Description : {{plunk.description}}", style="display:block;")
             span(ng-bind-template="Created : {{plunk.created_at | date:fullDate}}", style="display:block;")
+    #postComment
+        input(type="text", ng-model="ctrl.query", rows=5, cols=30)
+        button(ng-click="ctrl.searchRepository()") Search for Repos!
+        div(ng-repeat="result in ctrl.searchResult")
+            pre
+                span(ng-bind-template="Owner : {{result.owner.login}}", style="display:block;")
+                span(ng-bind-template="Name : {{result.name}}", style="display:block;")
+                span(ng-bind-template="URL : {{result.html_url}}", style="display:block;")
     script(src="/scripts/bundle.js")

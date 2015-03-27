@@ -1,66 +1,12 @@
 var chai = require("chai"),
-    sinon = require("sinon"),
-    expect = chai.expect;
+    q = require("./Mocks/q"),
+    http = require("./Mocks/http"),
+    fake = require("./Mocks/fakeResponses");
+
+expect = chai.expect;
 
 describe("My Factory...",function(){
-    var factory,
-        fakeResponse = {
-            data : [
-                {
-                    description : "Test Description 1",
-                    created_at : "2014-05-06T00:15:30.000Z"
-                },
-                {
-                    description : "Test Description 2",
-                    created_at : "2014-05-06T00:36:30.000Z"
-                },
-                {
-                    description : "Test Description 3",
-                    created_at : "2014-05-06T02:15:30.000Z"
-                }
-            ]
-        },
-        http = {
-            get:sinon.stub().returns({
-                then:function(success,error){
-                    success(fakeResponse);
-                }
-            })
-        },
-        q = {
-            defer : function(){
-                var value,
-                    isOk = false;
-                
-                var resolve = function (response){
-                    isOk = true;
-                    value = response;
-                }
-                
-                var reject = function (error){
-                    isOk = false;
-                    value = undefined;
-                }
-                
-                var then = function(success,error){
-                    if(isOk){
-                        return success(value);
-                    }else{
-                        return error(value);
-                    }
-                }
-                
-                var promise = {
-                    then : then
-                }
-                
-                return {
-                    resolve : resolve,
-                    reject : reject,
-                    promise : promise
-                }
-            }
-        };
+    var factory;
     
     beforeEach(function(){
         var currentFactory = require("./../app/factory.js");
@@ -70,8 +16,21 @@ describe("My Factory...",function(){
     
     it("should return my plunks properly",function(){
         var myPlunks = factory.getPlunks();
-        myPlunks.then(function(response){
-            expect(response).to.equal(fakeResponse.data);
-        });
-    })
+        var succeed = function(response){
+            expect(response.data).to.equal(fake.getPlunks.data);
+        };
+        myPlunks.success(succeed);
+        expect(myPlunks.success.called).to.be.true;
+        expect(myPlunks.success.calledWith(succeed)).to.be.true;
+    });
+    
+    it("should return a list of Repositories properly",function(){
+        var repos = factory.searchRepos("angular");
+        var succeed = function(response){
+            expect(response.data).to.equal(fake.searchResults.data);
+        };
+        repos.success(succeed);
+        expect(repos.success.called).to.be.true;
+        expect(repos.success.calledWith(succeed)).to.be.true;
+    });
 })
